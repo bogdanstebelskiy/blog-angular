@@ -1,0 +1,30 @@
+.card-container {
+  margin: 16px;
+  max-width: 60%;
+  padding-bottom: 30px;
+}
+
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+mat-card {
+  padding: 10px;
+}
+
+mat-card-title {
+  margin-bottom: 10px;
+}
+
+mat-card-header {
+  flex-direction: column;
+}
+
+mat-card-content {
+  margin-top: 10px;
+}
+
+mat-card-footer {
+  margin-left: 20px;
+}

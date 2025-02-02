@@ -1,0 +1,67 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <br />
+
+      <mat-card-content>
+        <div class="field">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              formControlName="username"
+              type="text"
+              placeholder="Type your username"
+            />
+            <mat-error
+              *ngIf="username.invalid && (username.dirty || username.touched)"
+            >
+              <div *ngIf="username.errors?.['required']">
+                Username is required.
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              type="password"
+              placeholder="Type your password"
+            />
+            <mat-error
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+            >
+              <div *ngIf="password.errors?.['required']">
+                Password is required.
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="loginForm.invalid"
+            class="w-full"
+          >
+            SIGN IN
+          </button>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <div class="mt-2">
+          Not a member? <a routerLink="/register">Register</a>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

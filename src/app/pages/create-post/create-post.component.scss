@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.center-card {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 10px;
+  padding: 30px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+}

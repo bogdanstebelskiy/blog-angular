@@ -1,0 +1,61 @@
+<div class="card-container" *ngFor="let item of allPosts">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ item.title }}</mat-card-title>
+      <mat-card-subtitle
+        >Posted by: {{ item.authorUsername }} | Posted On:
+        {{ item.createdAt | date : "medium" }} | Updated On :
+        {{ item.updatedAt | date : "medium" }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-grid-list cols="5">
+      <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <img
+          mat-card-image
+          [src]="'https://www.bsr.org/images/heroes/bsr-focus-nature-hero.jpg'"
+          class="post-img"
+          alt="Card Image"
+        />
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="3" [rowspan]="1">
+        <mat-card-content>
+          {{
+            item.content.length > 600
+              ? item.content.substr(0, 600) + "..."
+              : item.content
+          }}
+        </mat-card-content>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        disabled
+        (click)="likePost(item.id)"
+      >
+        {{ item.likes.length }} <mat-icon>favorite</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        disabled
+        style="margin-left: 5px"
+      >
+        {{ item.viewsCount }}
+        <mat-icon>remove_red_eye</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        style="margin-left: 5px"
+        routerLink="/view-post/{{ item.id }}"
+      >
+        View Post
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

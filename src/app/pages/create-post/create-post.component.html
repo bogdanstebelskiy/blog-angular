@@ -1,0 +1,53 @@
+<div class="container">
+  <mat-card class="center-card">
+    <mat-card-content>
+      <form [formGroup]="postForm">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Content</mat-label>
+          <textarea matInput rows="5" formControlName="content"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Tags</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Enter fruits">
+            @for (tag of tags(); track tag) {
+            <mat-chip-row
+              (removed)="remove(tag)"
+              [editable]="true"
+              (edited)="edit(tag, $event)"
+              [aria-description]="'press enter to edit ' + tag.name"
+            >
+              {{ tag.name }}
+              <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            }
+            <input
+              placeholder="New fruit..."
+              [matChipInputFor]="chipGrid"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          style="float: right"
+          [disabled]="!postForm.valid"
+          (click)="createNewPost()"
+        >
+          Create New Post!
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
